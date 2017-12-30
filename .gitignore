@@ -15,3 +15,5 @@ Session.vim
 tags
 
 # End of https://www.gitignore.io/api/vim
+picture-edit.key
+.DS_Store
