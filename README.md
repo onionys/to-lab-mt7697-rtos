@@ -10,4 +10,13 @@ MT7697 RTOS 開發入門文件
 
 [ ch04 : RTOS Thread 設定](ch04.md)
 
-[ chapter Makefile 設定](./ch-Makefile.md)
+# Micropython
+
+[ build unix and esp32](./upy-ch01.md)
+
+[ build mt7697 ](./upy-ch02.md)
+
+[ build mt7697 tom ](./upy-ch02.md)
+
+[ build micorpython ](./upy-ch04.md)
+
