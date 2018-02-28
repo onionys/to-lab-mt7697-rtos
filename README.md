@@ -10,4 +10,4 @@ MT7697 RTOS 開發入門文件
 
 [ ch04 : RTOS Thread 設定](ch04.md)
 
-
+[ chapter Makefile 設定](./ch-Makefile.md)
