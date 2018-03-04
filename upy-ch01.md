@@ -49,4 +49,4 @@ make
 ```
 ./microython
 ```
-![upy01-02](imgs/upy01/upy01-01.png)
+![upy01-01](imgs/upy01/upy01-01.png)
