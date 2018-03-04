@@ -29,11 +29,18 @@ ports/minmal -- 一個最小的MicroPython端口，如果你想將MicroPython移
 ```
 git clone https://github.com/micropython/micropython.git
 ```
+下載相關開發方套件:
+在Unix系統中需要 libffi 函式庫和pkg-config 工具。在Debian/Ubuntu/Mint 相關Linux衍生發行版，安裝:
+```
+sudo apt-get install build-essential
+sudo apt-get install libffi-dev pkg-config
+```
 下載submodule、初始化、編譯axtls / microPython for Unix
 ```
 cd micropython
 git submodule update --init
-cd port/axls
+cd port/unix
+make deplibs
 make axtls
 make
 ```
