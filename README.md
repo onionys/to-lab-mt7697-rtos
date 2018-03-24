@@ -20,3 +20,4 @@ MT7697 RTOS 開發入門文件
 
 [ build micorpython ](./upy-ch04.md)
 
+[ porting micropython note](upy-ch05.md)
