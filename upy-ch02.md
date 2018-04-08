@@ -1,4 +1,4 @@
-### MicroPython for the ESP32
+# MicroPython for the ESP32
 ESP32整合Wi-Fi(2.4GHz band)和Bluetooth4.2在同一個晶片上，隨著雙核處理核心與低功協處理器等內建功能，EPS32提供了強有力、高度整合平台，可持續符合高效用電需求、嚴謹設計、安全性、高效率感或可靠性。
 
 Espressif 提供了基本硬體與軟體資源，它幫助應用EPS32硬體系列開發應用程式軟體。可用WiFi, Bluetooth通訊方式與幾個其他特性，經Espressif可以在軟體開發架構上快速開發IOT應用。

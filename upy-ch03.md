@@ -1,4 +1,4 @@
-### 如何將MT7697專案移至 Micropython
+# 如何將MT7697專案移至 Micropython
 
 要將Micropython編輯完成放至MT7697執行，需要雙方SDK環境，我們開發方式還是以Micropython為主要專案，我們要MT7697的基本專案先放置MircoPython進行開發，我們所開發的平台作系統為Linux與xOS
 
