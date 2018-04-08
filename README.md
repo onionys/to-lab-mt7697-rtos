@@ -20,8 +20,8 @@ MT7697 RTOS 開發入門文件
 
     [ ch 4 : hello world of micropython for mt7697 ](./upy-ch04.md)
 
-    [ ch 5 : 互動直譯器 ](./upy-ch04.md)
+    [ ch 5 : 互動直譯器 ](./upy-ch05.md)
 
-    [ ch 6 : 建立模組 ](./upy-ch04.md)
+    [ ch 6 : 建立模組 ](./upy-ch06.md)
 
 [ porting micropython note](upy-ch05.md)
