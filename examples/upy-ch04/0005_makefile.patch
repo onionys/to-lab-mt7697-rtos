@@ -1,0 +1,86 @@
+diff --git a/ports/mt7697/GCC/Makefile b/ports/mt7697/GCC/Makefile
+index 987e174..8d3365a 100644
+--- a/ports/mt7697/GCC/Makefile
++++ b/ports/mt7697/GCC/Makefile
+@@ -34,6 +34,8 @@
+  
+ ###################################################
+ # Project vairables assignment
++BUILD = $(PWD)/build
++include ../../../py/mkenv.mk
+ 
+ SOURCE_DIR = $(LINKIT_SDK_PATH)
+ PWD= $(shell pwd)
+@@ -62,7 +64,7 @@ MY_S_OBJS = $(MY_S_FILES:%.s=$(MY_BUILD_DIR)/%.o)
+ LDFLAGS = $(ALLFLAGS) $(FPUFLAGS) --specs=nano.specs -lnosys -nostartfiles
+ LDFLAGS += -Wl,-wrap=malloc -Wl,-wrap=calloc -Wl,-wrap=realloc -Wl,-wrap=free
+ LDFLAGS += -Wl,-Tmt7687_flash.ld -Wl,--gc-sections
+-
++LD      = $(BINPATH)/arm-none-eabi-ld
+ ###################################################
+ # module include
+ 
+@@ -128,6 +130,13 @@ APP_FILES += $(APP_PATH)/GCC/syscalls.c
+ APP_FILES += $(APP_PATH_SRC)/bt_hci_log_uart.c
+ APP_FILES += $(APP_PATH_SRC)/bt_init.c
+ APP_FILES += $(APP_PATH_SRC)/bt_common.c
++APP_FILES += $(APP_PATH_SRC)/mphalport.c
++
++#APP_FILES += $(TOP)/lib/utils/stdout_helpers.c
++APP_FILES += $(TOP)/lib/utils/pyexec.c
++APP_FILES += $(TOP)/lib/libc/string0.c
++APP_FILES += $(TOP)/lib/mp-readline/readline.c
++APP_FILES += $(BUILD)/_frozen_mpy.c
+ 
+ ifeq ($(MTK_MINICLI_ENABLE),y)
+ APP_FILES += driver/board/linkit7697_hdk/util/src/io_def.c
+@@ -152,10 +161,24 @@ CFLAGS += -I$(SOURCE_DIR)/driver/board/linkit7697_hdk/external_flash/driver/boar
+ CFLAGS += -D__BT_DEBUG__
+ CFLAGS += -I$(APP_PATH)/src/ut_app
+ CFLAGS += -I$(SOURCE_DIR)/middleware/MTK/bluetooth/inc
++#CFLAGS += -Wall -Werror -std=c99 -nostdlib
+ 
+ ###################################################
+ 
++# qstr definitions (must come before including py.mk)
++QSTR_DEFS = ../inc/qstrdefsport.h
++
++# include py core make definitions
++include $(TOP)/py/py.mk
++
++INC += -I$(APP_PATH)/inc
++INC += -I.
++INC += -I$(TOP)
++INC += -I$(BUILD)
++OBJ = $(PY_O) #$(addprefix $(BUILD)/, $(SRC_C:.c=.o))
++include $(TOP)/py/mkrules.mk
+ 
++CFLAGS += $(INC)
+ ###################################################
+ # Libraries
+ include $(SOURCE_DIR)/project/common/bsp_ex/module.mk
+@@ -186,19 +209,22 @@ $(MODULE_PATH):
+ 
+ proj: $(OUTPATH)/$(PROJ_NAME).elf
+ 
+-$(OUTPATH)/$(PROJ_NAME).elf: $(C_OBJS) $(CXX_OBJS) $(S_OBJS) $(LIBS) $(MY_C_OBJS) $(MY_S_OBJS)
++$(OUTPATH)/$(PROJ_NAME).elf: $(OBJ) $(C_OBJS) $(CXX_OBJS) $(S_OBJS) $(LIBS) $(MY_C_OBJS) $(MY_S_OBJS) 
+ 	@echo Linking...
+ 	if [ -e "$@" ]; then rm -f "$@"; fi
+ 	if [ -e "$(OUTPATH)/$(PROJ_NAME).map" ]; then rm -f "$(OUTPATH)/$(PROJ_NAME).map"; fi
+ 	if [ -e "$(OUTPATH)/$(PROJ_NAME).dis" ]; then rm -f "$(OUTPATH)/$(PROJ_NAME).dis"; fi
+ 	if [ -e "$(OUTPATH)/$(PROJ_NAME).hex" ]; then rm -f "$(OUTPATH)/$(PROJ_NAME).hex"; fi
+ 	if [ -e "$(OUTPATH)/$(PROJ_NAME).bin" ]; then rm -f "$(OUTPATH)/$(PROJ_NAME).bin"; fi
+-	@$(CC) $(LDFLAGS) -Wl,--start-group $^ -Wl,--end-group -Wl,-Map=$(OUTPATH)/$(PROJ_NAME).map -lm -o $@ >>$(ERR_LOG)
++	$(CC) $(LDFLAGS) -Wl,--start-group $^ -Wl,--end-group -Wl,-Map=$(OUTPATH)/$(PROJ_NAME).map -lm -o $@ >>$(ERR_LOG)
+ 	$(OBJDUMP) -D $(OUTPATH)/$(PROJ_NAME).elf > $(OUTPATH)/$(PROJ_NAME).dis
+ 	$(OBJCOPY) -O ihex $(OUTPATH)/$(PROJ_NAME).elf $(OUTPATH)/$(PROJ_NAME).hex
+ 	$(OBJCOPY) -O binary $(OUTPATH)/$(PROJ_NAME).elf $(OUTPATH)/$(PROJ_NAME).bin
+ 	@echo Done
+ 
++$(BUILD)/_frozen_mpy.c: frozentest.mpy $(BUILD)/genhdr/qstrdefs.generated.h
++	$(ECHO) "MISC freezing bytecode"
++	$(Q)$(TOP)/tools/mpy-tool.py -f -q $(BUILD)/genhdr/qstrdefs.preprocessed.h -mlongint-impl=none $< > $@
+ 
+ include ./rule.mk
+ 
