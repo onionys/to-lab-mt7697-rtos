@@ -12,12 +12,16 @@ MT7697 RTOS 開發入門文件
 
 # Micropython
 
-[ build unix and esp32](./upy-ch01.md)
+    [ ch 1 : build unix ](./upy-ch01.md)
 
-[ build mt7697 ](./upy-ch02.md)
+    [ ch 2 : build micropython into esp32 ](./upy-ch02.md)
 
-[ build mt7697 tom ](./upy-ch02.md)
+    [ ch 3 : build mtk proj in micorpython sdk ](./upy-ch03.md)
 
-[ build micorpython ](./upy-ch04.md)
+    [ ch 4 : hello world of micropython for mt7697 ](./upy-ch04.md)
+
+    [ ch 5 : 互動直譯器 ](./upy-ch04.md)
+
+    [ ch 6 : 建立模組 ](./upy-ch04.md)
 
 [ porting micropython note](upy-ch05.md)
