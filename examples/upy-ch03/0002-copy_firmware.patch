@@ -1,0 +1,18 @@
+--- .//LinkIt_SDK/tools/scripts/build/copy_firmware.sh	2017-11-15 18:47:58.000000000 +0800
++++ .//micropython-esp32/ports/mt7697/GCC/copy_firmware.sh	2018-03-25 10:33:15.000000000 +0800
+@@ -10,6 +10,7 @@
+ BOARD_CONFIG=$4
+ BIN_FILENAME=$5
+ PROJ_DIR=$6
++BOARD=$7
+ FLASHBIN_NAME=flash.bin
+ BOOTLOADERMAXSIZE=65536  # 64KB
+ 
+@@ -112,7 +113,6 @@
+ ###############################################################################
+ #Begin here
+ echo `basename $0`"...."
+-get_board
+ 
+ if [ "$BOARD_CONFIG" == "mt2523_hdk" ]; then
+     # copy download config file

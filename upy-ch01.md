@@ -1,4 +1,4 @@
-### 第二篇 MicroPython
+# 第二篇 MicroPython
 MicoPython啟初由澳洲程式工程師兼物理家 Damien George在2013在Kickstarter成功募資創建，雖然當初的MicroPython，只支援Pyboard 微控制器(STM32)，由於Micropython支援基於ARM架構，MicroPython已經可以運行在Arduino、ESP8266、ESP32等硬體上。
 
 MicroPython 是用C語言編寫的Python 3程式語言軟體實現，它擁有是一個完整的Python編譯器與運行庫，並且經過優化過可以執行於微控制晶片。使用者可以使用交互式提示(REPL)，立即執行被支援的指命。包括一系列核心Python函式庫、模組庫。MicroPython也包含可以讓使用者可以直接的讀寫低層硬體。
