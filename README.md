@@ -10,6 +10,10 @@ MT7697 RTOS 開發入門文件
 
 [ ch04 : RTOS Thread 設定](ch04.md)
 
+# MicroPython LinkIt 7697 Usage Note
+
+   [upy 7697 usage](micropython-linkit767-tutorial.md)
+
 # Micropython
 
     [ ch 1 : build unix ](./upy-ch01.md)

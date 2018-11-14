@@ -5,11 +5,11 @@
 使用 USB 和 linkit 7697 連接上之後，可使用 Arduino IDE 與其
 進行連線
 
-   [arduino-ide-to-micropython](imgs/arduino-micropython-uart.png)
+   ![arduino-ide-to-micropython](imgs/arduino-micropython-uart.png)
 
 開啟 Arduino 序列埠設定為 `115200 baudrate` ，結束符號為 `CR`。
 
-   [arduion-ser](imgs/arduino-ser-ctrl.png)
+   ![arduion-ser](imgs/arduino-ser-ctrl.png)
 
 # machine 模組
 
