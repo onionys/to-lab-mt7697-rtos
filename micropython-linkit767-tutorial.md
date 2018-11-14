@@ -73,7 +73,7 @@ Output ex:
 
 	pwm7.duty(1023)
 
-# SPI Master
+## SPI Master
 
 	spi = SPI(mosi,miso,sck)
 	mosi : 做為 SPI MOSI 的 pin 腳號碼
@@ -110,7 +110,7 @@ SPI 讀取資料
 	data = spi.read(9)
     cs.value(1)
 
-# I2C Master
+## I2C Master
 
     P8 : I2C SCL
     P9 : I2C SDA
@@ -168,4 +168,43 @@ ex:
 	i2c.writeto(60, bytearray((1, 2, 3)), stop = False)
 	i2c.readfrom(60, 9)
 
+# uos 模組
+
+    import uos
+
+看當下目錄有哪些檔案
+
+    uos.listdir()
+
+建立資料夾
+
+    uos.mkdir('data')
+
+刪除資料夾
+
+    uos.rmdir('data')
+
+將暫存資料同步到磁碟中
+
+    uos.sync()
+
+刪除檔案
+
+    uos.remove('filename.txt')
+
+產生指定長度的隨機 bytes
+
+    uos.urandom(10)
+
+取得目前的路徑
+
+    uos.getcwd()
+
+取得目前版本訊息
+
+    uos.uname()
+
+取得指定路徑的 file system 狀態訊息
+
+    uos.statvfs('/flash')
 
